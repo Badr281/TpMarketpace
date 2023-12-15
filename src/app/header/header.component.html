@@ -1,0 +1,17 @@
+<header class="site-header">
+    <div class="site-identity">
+        <a href="#"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRYwXck5oYsYGiQ17c83x1JkkzBixurJi_l3g&usqp=CAU" alt="TP2 : Marketplace" /></a>
+        <h1><a href="#">TP2 : Marketplace</a></h1>
+    </div>
+    <nav class="site-navigation">
+        <ul class="nav">
+            <li><a href="/">Produits</a></li>
+            <li><a href="#">Categories</a></li>
+            <li><a href="#">Nouveautés</a></li>
+            <li><a href="#">Contactez-nous</a></li>
+            <li><a href="#" (click)="open($event)">
+                Panier <span class="badge" [ngClass]="{ 'badge-green': cartItems.length > 0, 'badge-yellow': cartItems.length === 0 }">{{ cartItems.length }}</span>
+            </a></li>
+        </ul>
+    </nav>
+</header>

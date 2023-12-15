@@ -1,0 +1,58 @@
+<div class="offcanvas-header">
+			<h5 class="offcanvas-title">Mes sélections</h5>
+			<button
+				type="button"
+				class="btn-close text-reset"
+				aria-label="Close"
+				(click)="activeOffcanvas.dismiss('Cross click')"
+			></button>
+		</div>
+		<div class="offcanvas-body">
+            <hr>
+            <div *ngIf="cartItems.length > 0; then SUC else NORESULT"></div>
+            <ng-template #SUC>
+                <div class="card my-2 bg-default" *ngFor="let item of cartItems" >
+                    <div class="card-body bg-light">
+                        <div class="row  p-2">
+                                <div class="col card-img-product" [ngStyle]="{'background-image': 'url('+item.item.image+')'}">               
+                                    <!-- <img class="card-img-left" style="height:30px;" [src]="item.item.image" [alt]="item.item.title"> -->
+                                </div>
+                                <div class="col">
+                                    <h4 class="product_title"><u>{{ item.item.title }}</u></h4>
+                                    <span class="product_category badge bg-info">{{ item.item.category }}</span>
+                                    <p class="product_description">{{ item.item.description }}</p>
+                                    <strong class="product_price">{{ item.item.price }} $</strong>
+                                </div>
+                                <div class="col d-flex align-items-center">
+                                        <button class="col-4 btn btn-info text-center" (click)="removeProductQte(item.item)"><b>-</b></button>
+                                        <span class="quantity_total mx-2 ">{{ item.quantity }}</span>
+                                        <button class="col-4 btn btn-info text-center" (click)="addProductQte(item.item)"><b>+</b></button>
+                                    <br>
+                                    
+                                </div>
+                                <hr class="my-4">
+                                <div class="row m-0 p-0">
+                                    <div class="col-md-6">
+                                        <p>
+                                            <strong>Quantité: {{ item.quantity }}</strong>
+                                        </p>
+                                        <p>
+                                            <strong>Total: {{ item.quantity *  item.item.price }}$</strong>
+                                        </p>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <button  class="col-4 btn btn-danger  float-end" (click)="removeProductFromCart(item.item)"><fa-icon [icon]="faTrash"></fa-icon></button>
+                                    </div>
+                                    
+                                </div>
+                        </div>
+                    </div>
+                </div>
+            </ng-template>
+            <ng-template  #NORESULT>
+                    <div class="card-body d-flex text-center">
+                        <div class="alert alert-primary w-100" role="alert">
+                            <strong>Aucun article sélectionné</strong>
+                        </div>
+                    </div>
+            </ng-template>
